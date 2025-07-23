@@ -1,8 +1,7 @@
 ﻿using BoletoBradesco.Application.Interfaces;
 using BoletoBradesco.Domain.Entities;
 using BoletoBradesco.Infrastructure;
-using BoletoBradesco.Infrastructure.Services;
-using DinkToPdf.Contracts;
+using Castle.Core.Configuration;
 using FluentAssertions;
 using Moq;
 
@@ -15,8 +14,9 @@ namespace BoletoBradesco.Tests
         {
             // Arrange
             var mockPdfService = new Mock<IPdfService>();
+            var mockConfiguration = new Mock<IConfiguration>();
             mockPdfService.Setup(p => p.GerarPdf(It.IsAny<string>())).Returns(new byte[0]);
-            var service = new BoletoService(mockPdfService.Object);
+            var service = new BoletoService(mockPdfService.Object, (Microsoft.Extensions.Configuration.IConfiguration)mockConfiguration.Object);
             var input = new BoletoBanco
             {
                 CedenteNome = "Empresa Exemplo LTDA",
@@ -43,8 +43,9 @@ namespace BoletoBradesco.Tests
         {
             // Arrange
             var mockPdfService = new Mock<IPdfService>();
+            var mockConfiguration = new Mock<IConfiguration>();
             mockPdfService.Setup(p => p.GerarPdf(It.IsAny<string>())).Returns(new byte[0]);
-            var service = new BoletoService(mockPdfService.Object);
+            var service = new BoletoService(mockPdfService.Object, (Microsoft.Extensions.Configuration.IConfiguration)mockConfiguration.Object);
             var input = new BoletoBanco
             {
                 CedenteNome = "Empresa Exemplo LTDA",
@@ -57,10 +58,10 @@ namespace BoletoBradesco.Tests
             };
 
             // Act
-            var pdf = service.GerarBoletoPdf(input);            
+            var pdf = service.GerarBoletoPdf(input);
 
             // Assert
-            pdf.Should().NotBeNull();            
+            pdf.Should().NotBeNull();
         }
     }
 }
