@@ -8,24 +8,18 @@ using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adiciona o serviço do Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
-
 builder.Services.AddScoped<IBoletoService, BoletoService>();
 builder.Services.AddSingleton<IConverter>(PdfConverter.Create());
-builder.Services.AddScoped<PdfService>(); // se você criou um serviço para gerar PDF
-
+builder.Services.AddScoped<PdfService>();
 
 var app = builder.Build();
 
-
-
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi(); // Exibe o JSON em /openapi/v1.json
+    app.MapOpenApi();
 
-    // Adiciona a UI do NSwag
     app.UseSwaggerUi(options =>
     {
         options.DocumentPath = "openapi/v1.json";
@@ -36,10 +30,10 @@ app.MapPost("/api/boletos/html", (BoletoBanco boleto, IBoletoService boletoServi
 {
     var html = boletoService.GerarBoletoHtml(boleto);
     return Results.Content(html, "text/html");
-});
+})
+ .WithName("GerarHtml");
 
-
-app.MapPost("/api/boletos", (BoletoBanco boleto, IBoletoService boletoService) =>
+app.MapPost("/api/boletos/pdf", (BoletoBanco boleto, IBoletoService boletoService) =>
 {
     var pdf = boletoService.GerarBoletoPdf(boleto);
     return Results.File(pdf, "application/pdf", "boleto.pdf");
@@ -48,4 +42,3 @@ app.MapPost("/api/boletos", (BoletoBanco boleto, IBoletoService boletoService) =
 .WithOpenApi();
 
 app.Run();
-
