@@ -1,7 +1,8 @@
 ﻿using BoletoBradesco.Application.Interfaces;
 using BoletoBradesco.Domain.Entities;
-using BoletoBradesco.Infrastructure.Services;
 using BoletoNetCore;
+using BoletoNetCore.Extensions;
+using Microsoft.Extensions.Configuration;
 
 namespace BoletoBradesco.Infrastructure;
 
@@ -9,15 +10,12 @@ public class BoletoService : IBoletoService
 {
 
     private readonly IPdfService _pdfService;
+    private readonly IConfiguration _configuration;
 
-    //public BoletoService()
-    //{
-        
-    //}
-
-    public BoletoService(IPdfService pdfService)
+    public BoletoService(IPdfService pdfService, IConfiguration configuration)
     {
         _pdfService = pdfService;
+        _configuration = configuration;
     }
 
 
@@ -25,15 +23,15 @@ public class BoletoService : IBoletoService
     {
         var beneficiario = new Beneficiario
         {
-            CPFCNPJ = input.CedenteCPFCNPJ,
-            Nome = input.CedenteNome,
+            CPFCNPJ = _configuration["DadosCedente:CNPJ"], // input.CedenteCPFCNPJ,
+            Nome = _configuration["DadosCedente:RazaoSocial"],//input.CedenteNome,
             CodigoTransmissao = "1234567",
             ContaBancaria = new ContaBancaria
             {
-                Agencia = "1234",
+                Agencia = _configuration["DadosCedente:Agencia"],
                 DigitoAgencia = "0",
-                Conta = "1234856",
-                DigitoConta = "7",
+                Conta = _configuration["DadosCedente:ContaCorrente"].Left(7),
+                DigitoConta = _configuration["DadosCedente:ContaCorrente"].Right(1),
                 CarteiraPadrao = "09",
                 TipoCarteiraPadrao = TipoCarteira.CarteiraCobrancaSimples
             }
@@ -83,8 +81,8 @@ public class BoletoService : IBoletoService
 
     public byte[] GerarBoletoPdf(BoletoBanco input)
     {
-        var html = GerarBoletoHtml(input); 
+        var html = GerarBoletoHtml(input);
         return _pdfService.GerarPdf(html);
     }
-    
+
 }
