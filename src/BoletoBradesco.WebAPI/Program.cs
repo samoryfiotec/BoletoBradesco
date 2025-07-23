@@ -11,8 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<IBoletoService, BoletoService>();
+builder.Services.AddScoped<IPdfService, PdfService>();
 builder.Services.AddSingleton<IConverter>(PdfConverter.Create());
-builder.Services.AddScoped<PdfService>();
 
 var app = builder.Build();
 

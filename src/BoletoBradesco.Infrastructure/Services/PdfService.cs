@@ -1,9 +1,10 @@
-﻿using DinkToPdf;
+﻿using BoletoBradesco.Application.Interfaces;
+using DinkToPdf;
 using DinkToPdf.Contracts;
 
 namespace BoletoBradesco.Infrastructure.Services
 {
-    public class PdfService
+    public class PdfService : IPdfService
     {
         private readonly IConverter _converter;
 
