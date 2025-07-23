@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BoletoNetCore" Version="3.0.1.485" />
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="QuestPDF" Version="2025.7.0" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.7" />
+    <PackageReference Include="ZXing.Net" Version="0.16.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BoletoBradesco.Application\BoletoBradesco.Application.csproj" />
+  </ItemGroup>
+
+</Project>
