@@ -23,9 +23,10 @@ public class BoletoService : IBoletoService
     {
         var beneficiario = new Beneficiario
         {
-            CPFCNPJ = _configuration["DadosCedente:CNPJ"], // input.CedenteCPFCNPJ,
-            Nome = _configuration["DadosCedente:RazaoSocial"],//input.CedenteNome,
+            CPFCNPJ = _configuration["DadosCedente:CNPJ"],
+            Nome = _configuration["DadosCedente:RazaoSocial"],
             CodigoTransmissao = "1234567",
+            CodigoFormatado = _configuration["DadosCedente:Beneficiario"],
             ContaBancaria = new ContaBancaria
             {
                 Agencia = _configuration["DadosCedente:Agencia"],
@@ -48,7 +49,7 @@ public class BoletoService : IBoletoService
                 Bairro = "Centro",
                 Cidade = "Rio de Janeiro",
                 UF = "RJ",
-                CEP = "20000-000"
+                CEP = input.SacadoCEP
             }
         };
 
@@ -73,7 +74,6 @@ public class BoletoService : IBoletoService
         {
             Boleto = boleto,
             OcultarInstrucoes = false
-            //OcultarReciboSacado = false
         };
 
         return boletoBancario.MontaHtmlEmbedded();
