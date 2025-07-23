@@ -8,12 +8,18 @@ namespace BoletoBradesco.Infrastructure;
 public class BoletoService : IBoletoService
 {
 
-    private readonly PdfService _pdfService;
+    private readonly IPdfService _pdfService;
 
-    public BoletoService(PdfService pdfService)
+    //public BoletoService()
+    //{
+        
+    //}
+
+    public BoletoService(IPdfService pdfService)
     {
         _pdfService = pdfService;
     }
+
 
     public string GerarBoletoHtml(BoletoBanco input)
     {
@@ -77,8 +83,8 @@ public class BoletoService : IBoletoService
 
     public byte[] GerarBoletoPdf(BoletoBanco input)
     {
-        var html = GerarBoletoHtml(input); // usa BoletoNetCore
-        return _pdfService.GerarPdf(html); // usa DinkToPdf
+        var html = GerarBoletoHtml(input); 
+        return _pdfService.GerarPdf(html);
     }
     
 }
