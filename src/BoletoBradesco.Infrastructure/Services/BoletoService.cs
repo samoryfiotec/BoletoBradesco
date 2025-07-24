@@ -18,23 +18,24 @@ public class BoletoService : IBoletoService
         _configuration = configuration;
     }
 
-
     public string GerarBoletoHtml(BoletoBanco input)
     {
         var beneficiario = new Beneficiario
         {
             CPFCNPJ = _configuration["DadosCedente:CNPJ"],
             Nome = _configuration["DadosCedente:RazaoSocial"],
-            CodigoTransmissao = "1234567",
+            CodigoTransmissao = "2601841165",
             CodigoFormatado = _configuration["DadosCedente:Beneficiario"],
             ContaBancaria = new ContaBancaria
             {
                 Agencia = _configuration["DadosCedente:Agencia"],
                 DigitoAgencia = "0",
-                Conta = _configuration["DadosCedente:ContaCorrente"].Left(7),
-                DigitoConta = _configuration["DadosCedente:ContaCorrente"].Right(1),
+                Conta = _configuration["DadosCedente:ContaCorrente"],
+                DigitoConta = _configuration["DadosCedente:DigitoCC"],
                 CarteiraPadrao = "09",
-                TipoCarteiraPadrao = TipoCarteira.CarteiraCobrancaSimples
+                TipoCarteiraPadrao = TipoCarteira.CarteiraCobrancaSimples,
+                TipoFormaCadastramento = TipoFormaCadastramento.ComRegistro,
+                TipoImpressaoBoleto = TipoImpressaoBoleto.Empresa
             }
         };
 
@@ -44,11 +45,11 @@ public class BoletoService : IBoletoService
             Nome = input.SacadoNome,
             Endereco = new Endereco
             {
-                LogradouroEndereco = "Rua Exemplo",
-                LogradouroNumero = "123",
-                Bairro = "Centro",
-                Cidade = "Rio de Janeiro",
-                UF = "RJ",
+                LogradouroEndereco = input.SacadoLogradouro,
+                LogradouroNumero = input.SacadoNumero,
+                Bairro = input.SacadoBairro,
+                Cidade = input.SacadoCidade,
+                UF = input.SacadoUF,
                 CEP = input.SacadoCEP
             }
         };
@@ -61,11 +62,14 @@ public class BoletoService : IBoletoService
             Pagador = pagador,
             ValorTitulo = input.Valor,
             NossoNumero = input.NossoNumero,
-            NumeroDocumento = input.NossoNumero,
-            EspecieDocumento = TipoEspecieDocumento.DS,
+            NumeroDocumento = _configuration["DadosCedente:NumeroCedente"],
+            //QuantidadePagamentos = "1",
+            EspecieDocumento = TipoEspecieDocumento.DM,
             DataEmissao = DateTime.Now,
             DataProcessamento = DateTime.Now,
-            DataVencimento = input.Vencimento
+            DataVencimento = input.Vencimento,
+            ImprimirMensagemInstrucao = true,
+            MensagemInstrucoesCaixa = "Após o vencimento, cobrar multa de 2% e juros de 1% ao mês em todo o valor do consignado."
         };
 
         boleto.ValidarDados();
