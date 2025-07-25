@@ -1,12 +1,12 @@
-﻿using BoletoBradesco.Domain.Entities;
+﻿using BoletoBradesco.Domain.DTOs;
 
 namespace BoletoBradesco.Application.Interfaces
 {
     public interface IBoletoService
     {
-        byte[] GerarBoletoPdf(BoletoBanco input);
+        byte[] GerarBoletoPdf(BoletoInputDto input);
 
-        string GerarBoletoHtml(BoletoBanco input);
+        string GerarBoletoHtml(BoletoInputDto input);
     }
 
 }

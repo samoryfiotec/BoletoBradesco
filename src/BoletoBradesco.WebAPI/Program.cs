@@ -1,5 +1,6 @@
+using BoletoBradesco.Application;
 using BoletoBradesco.Application.Interfaces;
-using BoletoBradesco.Domain.Entities;
+using BoletoBradesco.Domain.DTOs;
 using BoletoBradesco.Infrastructure;
 using BoletoBradesco.Infrastructure.Services;
 using DinkToPdf.Contracts;
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
+builder.Services.AddScoped<IBoletoBuilder, BoletoBuilder>();
 builder.Services.AddScoped<IBoletoService, BoletoService>();
 builder.Services.AddScoped<IPdfService, PdfService>();
 builder.Services.AddSingleton<IConverter>(PdfConverter.Create());
@@ -26,14 +28,14 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.MapPost("/api/boletos/html", (BoletoBanco boleto, IBoletoService boletoService) =>
+app.MapPost("/api/boletos/html", (BoletoInputDto boleto, IBoletoService boletoService) =>
 {
     var html = boletoService.GerarBoletoHtml(boleto);
     return Results.Content(html, "text/html");
 })
  .WithName("GerarHtml");
 
-app.MapPost("/api/boletos/pdf", (BoletoBanco boleto, IBoletoService boletoService) =>
+app.MapPost("/api/boletos/pdf", (BoletoInputDto boleto, IBoletoService boletoService) =>
 {
     var pdf = boletoService.GerarBoletoPdf(boleto);
     return Results.File(pdf, "application/pdf", "boleto.pdf");
