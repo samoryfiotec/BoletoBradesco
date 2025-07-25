@@ -62,14 +62,13 @@ public class BoletoService : IBoletoService
             Pagador = pagador,
             ValorTitulo = input.Valor,
             NossoNumero = input.NossoNumero,
-            NumeroDocumento = _configuration["DadosCedente:NumeroCedente"],
-            //QuantidadePagamentos = "1",
+            NumeroDocumento = _configuration["DadosCedente:NumeroCedente"],            
             EspecieDocumento = TipoEspecieDocumento.DM,
             DataEmissao = DateTime.Now,
             DataProcessamento = DateTime.Now,
             DataVencimento = input.Vencimento,
             ImprimirMensagemInstrucao = true,
-            MensagemInstrucoesCaixa = "Após o vencimento, cobrar multa de 2% e juros de 1% ao mês em todo o valor do consignado."
+            MensagemInstrucoesCaixa = _configuration["DadosCedente:Instrucoes"]
         };
 
         boleto.ValidarDados();
