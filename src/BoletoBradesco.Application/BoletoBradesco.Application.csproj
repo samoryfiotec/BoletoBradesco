@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BoletoNetCore" Version="3.0.1.485" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BoletoBradesco.Domain\BoletoBradesco.Domain.csproj" />
   </ItemGroup>
 
