@@ -23,6 +23,7 @@ public class BoletoService : IBoletoService
             Boleto = boleto,
             OcultarInstrucoes = false
         };
+
         return boletoBancario.MontaHtmlEmbedded();
     }
 

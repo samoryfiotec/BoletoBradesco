@@ -7,11 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BoletoNetCore" Version="3.0.1.485" />
-    <PackageReference Include="DinkToPdf" Version="1.0.8" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.7" />
-    <PackageReference Include="QuestPDF" Version="2025.7.0" />
-    <PackageReference Include="System.Drawing.Common" Version="9.0.7" />
+    <PackageReference Include="BoletoNetCore" Version="3.0.1.496" />
+    <PackageReference Include="BoletoNetCore.PDF" Version="3.0.1.398" />
+    <PackageReference Include="itext.bouncy-castle-adapter" Version="9.2.0" />
+    <PackageReference Include="itext.pdfhtml" Version="6.2.0" />
+    <PackageReference Include="itext7" Version="9.2.0" />
+    <PackageReference Include="itext7.font-asian" Version="9.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.8" />
+    <PackageReference Include="System.Formats.Asn1" Version="9.0.8" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="9.0.8" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="9.0.8" />
+    <PackageReference Include="System.Text.Json" Version="9.0.8" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
     <PackageReference Include="ZXing.Net" Version="0.16.10" />
   </ItemGroup>
 

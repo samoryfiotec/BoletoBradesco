@@ -2,8 +2,6 @@ using BoletoBradesco.Application;
 using BoletoBradesco.Application.Interfaces;
 using BoletoBradesco.Domain.DTOs;
 using BoletoBradesco.Infrastructure;
-using BoletoBradesco.Infrastructure.Services;
-using DinkToPdf.Contracts;
 using Scalar.AspNetCore;
 
 
@@ -14,7 +12,6 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped<IBoletoBuilder, BoletoBuilder>();
 builder.Services.AddScoped<IBoletoService, BoletoService>();
 builder.Services.AddScoped<IPdfService, PdfService>();
-builder.Services.AddSingleton<IConverter>(PdfConverter.Create());
 
 var app = builder.Build();
 
