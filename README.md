@@ -8,12 +8,12 @@ Este projeto demonstra como estruturar uma aplicação robusta e testável para 
 ![GitHub repo size](https://img.shields.io/github/repo-size/samoryfiotec/BoletoBradesco?label=Repo%20Size&color=brown&style=flat&suffix=KB)
 [![BoletoNetCore](https://img.shields.io/badge/BoletoNetCore-3.0.1.485-blue)](https://github.com/boleto-net/boletonetcore)
 [![ZXing.Net](https://img.shields.io/badge/ZXing.Net-0.16.10-teal)](https://github.com/micjahn/ZXing.Net)
-[![DinkToPdf](https://img.shields.io/badge/DinkToPdf-0.16.10-orange)](https://github.com/rdvojmoc/DinkToPdf)
+[![iText](https://img.shields.io/badge/iText-orange)](https://github.com/)
 
 ## Recursos
 
-- Geração de boletos Bradesco com código de barras
-- Layout de boleto em PDF com **DinkToPdf**
+- Layout HTML de boletos Bradesco com código de barras
+- Geração de boleto em PDF com **iText**
 - Geração de código de barras com **ZXing.Net**
 - Arquitetura Limpa (Clean Architecture)
 - Testes automatizados com **xUnit**
@@ -26,7 +26,7 @@ Adicione os pacotes via NuGet:
 ```bash
 dotnet add package BoletoNetCore
 dotnet add package ZXing.Net
-dotnet add package DinkToPdf
+dotnet add package iText
 ```
 
 ### Licença
