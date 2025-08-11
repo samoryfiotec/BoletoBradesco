@@ -1,6 +1,6 @@
 # BoletoBradesco
 
-Geração de boletos bancários do Bradesco com .NET 8/9 utilizando Clean Architecture e bibliotecas modernas como **BoletoNetCore**, **DinkToPdf** e **ZXing.Net**.
+Geração de boletos bancários do Bradesco com .NET 8 utilizando Clean Architecture e bibliotecas modernas como **BoletoNetCore**, **iText** e **ZXing.Net**.
 
 Este projeto demonstra como estruturar uma aplicação robusta e testável para emissão de boletos, com foco em qualidade de código, separação de responsabilidades e geração de PDFs profissionais.
 
@@ -17,7 +17,7 @@ Este projeto demonstra como estruturar uma aplicação robusta e testável para 
 - Geração de código de barras com **ZXing.Net**
 - Arquitetura Limpa (Clean Architecture)
 - Testes automatizados com **xUnit**
-- Compatível com .NET 8 e 9
+- Compatível com .NET 8
 
 ## Instalação
 
