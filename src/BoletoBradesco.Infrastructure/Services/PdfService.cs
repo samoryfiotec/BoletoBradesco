@@ -22,6 +22,7 @@ public class PdfService : IPdfService
         var fontProvider = new FontProvider();
         fontProvider.AddFont("C:/Windows/Fonts/arial.ttf");
         fontProvider.AddFont("C:/Windows/Fonts/arialbd.ttf");
+        fontProvider.AddFont("C:/Windows/Fonts/Arial Narrow Regular.ttf");
 
         var converterProperties = new ConverterProperties();
         converterProperties.SetFontProvider(fontProvider);
@@ -31,7 +32,7 @@ public class PdfService : IPdfService
 
         // Cria o Document com margens zeradas
         var document = new Document(pdfDocument);
-        document.SetMargins(0, 0, 0, 0); // top, right, bottom, left
+        document.SetMargins(5, 5, 5, 5); // top, right, bottom, left
 
         // Converte HTML em elementos
         var elements = HtmlConverter.ConvertToElements(html, converterProperties);
