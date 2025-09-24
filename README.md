@@ -31,4 +31,4 @@ dotnet add package iText
 
 ### Licença
 
-Este repo está sob a licença [MIT](LICENSE.txt)
+Este repositório está sob a licença [MIT](LICENSE.txt)

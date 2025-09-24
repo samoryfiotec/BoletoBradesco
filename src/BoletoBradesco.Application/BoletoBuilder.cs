@@ -22,6 +22,15 @@ namespace BoletoBradesco.Application
                 Nome = _configuration["DadosCedente:RazaoSocial"],
                 CodigoTransmissao = "2601841165",
                 CodigoFormatado = _configuration["DadosCedente:Beneficiario"],
+                Endereco = new Endereco
+                {
+                    LogradouroEndereco = _configuration["DadosCedente:Endereco"],
+                    LogradouroNumero = _configuration["DadosCedente:Numero"],
+                    Bairro = _configuration["DadosCedente:Bairro"],
+                    Cidade = _configuration["DadosCedente:Cidade"],
+                    UF = _configuration["DadosCedente:Uf"],
+                    CEP = _configuration["DadosCedente:Cep"]
+                },
                 ContaBancaria = new ContaBancaria
                 {
                     Agencia = _configuration["DadosCedente:Agencia"],
@@ -29,10 +38,37 @@ namespace BoletoBradesco.Application
                     Conta = _configuration["DadosCedente:ContaCorrente"],
                     DigitoConta = _configuration["DadosCedente:DigitoCC"],
                     CarteiraPadrao = "09",
+                    LocalPagamento = "Pagável preferencialmente no Banco Bradesco e Bradesco Expresso.",
                     TipoCarteiraPadrao = TipoCarteira.CarteiraCobrancaSimples,
                     TipoFormaCadastramento = TipoFormaCadastramento.ComRegistro,
                     TipoImpressaoBoleto = TipoImpressaoBoleto.Empresa
                 }
+                //CPFCNPJ = _configuration["DadosCedente:CNPJ"],
+                //Nome = _configuration["DadosCedente:RazaoSocial"],
+                //CodigoTransmissao = "2601841165",
+                //CodigoFormatado = _configuration["DadosCedente:Beneficiario"],
+                //Endereco = new Endereco
+                //{
+                //    LogradouroEndereco = _configuration["DadosCedente:Beneficiario"],
+                //    LogradouroNumero = _configuration["DadosCedente:Numero"],
+                //    Bairro = _configuration["DadosCedente:Bairro"],
+                //    Cidade = _configuration["DadosCedente:Cidade"],
+                //    UF = _configuration["DadosCedente:Uf"],
+                //    CEP = _configuration["DadosCedente:Cep"]
+                //},
+
+                //ContaBancaria = new ContaBancaria
+                //{
+                //    Agencia = _configuration["DadosCedente:Agencia"],
+                //    DigitoAgencia = "0",
+                //    Conta = _configuration["DadosCedente:ContaCorrente"],
+                //    DigitoConta = _configuration["DadosCedente:DigitoCC"],
+                //    CarteiraPadrao = "09",
+                //    LocalPagamento = "Pagável preferencialmente no Banco Bradesco e Bradesco Expresso.",
+                //    TipoCarteiraPadrao = TipoCarteira.CarteiraCobrancaSimples,
+                //    TipoFormaCadastramento = TipoFormaCadastramento.ComRegistro,
+                //    TipoImpressaoBoleto = TipoImpressaoBoleto.Empresa
+                //},                
             };
 
             var pagador = new Pagador
@@ -62,9 +98,9 @@ namespace BoletoBradesco.Application
                 EspecieDocumento = TipoEspecieDocumento.DM,
                 DataEmissao = DateTime.Now,
                 DataProcessamento = DateTime.Now,
-                DataVencimento = input.Vencimento,
+                DataVencimento = input.Vencimento,                
                 ImprimirMensagemInstrucao = true,
-                MensagemInstrucoesCaixa = _configuration["DadosCedente:Instrucoes"]
+                MensagemInstrucoesCaixa = _configuration["DadosCedente:Instrucoes"],                   
             };
 
             boleto.ValidarDados();

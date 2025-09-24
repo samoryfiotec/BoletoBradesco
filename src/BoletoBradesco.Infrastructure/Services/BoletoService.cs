@@ -21,7 +21,8 @@ public class BoletoService : IBoletoService
         var boletoBancario = new BoletoBancario
         {
             Boleto = boleto,
-            OcultarInstrucoes = false
+            OcultarInstrucoes = false,          
+            MostrarEnderecoBeneficiario = true            
         };
 
         return boletoBancario.MontaHtmlEmbedded();
